@@ -7,7 +7,7 @@ const ArrayComp = ({ data, generateOutput, level = 0 }) => {
   data.forEach((item) => {
     internal.push(generateOutput(item, level+1))
   })
-  return <div style={{marginLeft: `${10*(level)}px`}} key={`${data.toString()}-${level}`}>
+  return <div style={{marginLeft: `${10*(level)}px`}}>
     {view ? (<i className="fas fa-caret-down w-15-px" onClick={() => setView(!view)}></i>)
       : (<i className="fas fa-caret-right w-15-px" onClick={() => setView(!view)}></i>)
     }

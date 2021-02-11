@@ -12,7 +12,8 @@ const checkIfJSONString = str => {
 };
 
 const App = () => {
-  const [input, setInput] = useState(JSON.stringify(data3, null, 4))
+  // const [input, setInput] = useState(JSON.stringify(data3, null, 4))
+  const [input, setInput] = useState()
   const [theme, setTheme] = useState('dark')
   const [output, setOutput] = useState([])
   const snackbar = useRef(null);
@@ -21,27 +22,6 @@ const App = () => {
     const { value = '' } = event.target
     setInput(value)
   }
-
-  // const generateOutput = (input, level) => {
-  //   const toReturn = []
-  //   if (Array.isArray(input)) {
-  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>[</div>)
-  //     toReturn.push(input.map(ele => generateOutput(ele, level+1)))
-  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>]</div>)
-  //   }
-  //   else if (typeof input === 'object') {
-  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>{'{'}</div>)
-  //     for (const key in input) {
-  //       toReturn.push(
-  //         <div key={`${input}-${key}`} style={{marginLeft: `${10*(level+1)}px`}}>
-  //           {key}: {input[key]}
-  //         </div>
-  //       )
-  //     }
-  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>{'}'}</div>)
-  //   }
-  //   return toReturn
-  // }
 
   const generateOutput = (input, level, property) => {
     let toReturn = 'No Data';
@@ -96,7 +76,7 @@ const App = () => {
     <div className={`container ${theme}`}>
       <Header onThemeClick={setTheme} theme={theme} />
       <div className="main">
-        <InputArea onChange={handleChange} defaultValue={input} />
+        <InputArea onChange={handleChange} defaultValue={JSON.stringify(input, null, 4)} />
         <div className="btn-stack">
           <button className="btn" onClick={handleFormat}>Format</button>
           <button className="btn" onClick={handleCopy}>Copy JSON</button>
