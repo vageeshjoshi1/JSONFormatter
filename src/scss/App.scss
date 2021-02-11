@@ -36,14 +36,7 @@
     border: 1px solid #2c3e50;
     border-radius: 0.5%;
   }
-  
-  // .input-area {    
-    //   height: 100%;
-    //   resize: none;
-    //   width: 50%;
-    //   border: 1px solid #2c3e50;
-    //   border-radius: 0.5%;
-    // }
+
   .output-area {
     width: 50%;
     height: 100%;
@@ -53,5 +46,37 @@
     text-align: left;
     overflow: auto;
     padding: 5px;
+  }
+
+  .btn-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .btn {
+      margin: 10px 30px;
+      border: solid 2px #000;
+      color: #000;
+      font-size: 20px;
+      background: 0 0;
+      border-radius: 4%;
+      padding: 10px 10px;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+      &:hover {
+        border: solid 2px #18bc9c;
+        color: #18bc9c;
+        background: #fff;
+      }
+    }
+  }
+
+  .error {
+    .invalid, .empty {
+      text-align: center;
+      padding: 10px;
+    }
+    i {
+      font-size: 50px;
+    }
   }
 }
