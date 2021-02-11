@@ -13,6 +13,7 @@ const checkIfJSONString = str => {
 
 const App = () => {
   const [input, setInput] = useState(JSON.stringify(data3, null, 4))
+  const [theme, setTheme] = useState('dark')
   const [output, setOutput] = useState([])
   const snackbar = useRef(null);
   
@@ -92,8 +93,8 @@ const App = () => {
   }
 
   return (
-    <div className="container">
-      <Header />
+    <div className={`container ${theme}`}>
+      <Header onThemeClick={setTheme} theme={theme} />
       <div className="main">
         <InputArea onChange={handleChange} defaultValue={input} />
         <div className="btn-stack">

@@ -3,11 +3,12 @@
   flex-direction: column;
 
   header {
-    width: 100%;
     font-weight: 700;
     padding: 20px 15px;
     background-color: #262626;
     color: #fff;
+    display: flex;
+    justify-content: space-between;
   }
   
   footer {
@@ -37,12 +38,14 @@
     width: 50%;
     border: 1px solid #2c3e50;
     border-radius: 0.5%;
+    background-color: #262626;
+    color: white;
   }
 
   .output-area {
     width: 50%;
     height: 100%;
-    background-color: #282c34;
+    background-color: #262626;
     color: white;
     border-radius: 0.5%;
     text-align: left;
@@ -118,6 +121,30 @@
     to {bottom: 0; opacity: 0;}
   }
 
+  .w-50 { width: 50%; }
+
+  .theme-toggle {
+    text-align: right;
+    button {
+      border: solid 2px #FFF;
+      color: #FFF;
+      background: 0 0;
+      border-radius: 4%;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+      &:hover {
+        border: solid 2px #18bc9c;
+        color: #18bc9c;
+        background: #fff;
+      }
+    }
+    .selected {
+      background-color: #18bc9c;
+    }
+  }
+
+}
+.dark {
   .boolean {
     color: orange;
   }
@@ -129,5 +156,42 @@
   }
   .null {
     color: grey;
+  }
+}
+
+.light {
+  .boolean {
+    color: darkorange;
+  }
+  .string {
+    color: darkcyan;
+  }
+  .number {
+    color: darkorchid;
+  }
+  .null {
+    color: darkgrey;
+  }
+  .main {
+    background-color: #262626;
+  }
+  .header, .footer {
+    background-color: #87e3ff;
+    color: #262626;
+  }
+  .input-area, .output-area {
+    background-color: #F7F7F7;
+    color: #262626;
+  }
+  .btn-stack {
+    .btn {
+      border: solid 2px #F7F7F7;
+      color: #F7F7F7;
+      &:hover {
+        border: solid 2px #18bc9c;
+        color: #18bc9c;
+        background: #fff;
+      }
+    }
   }
 }
