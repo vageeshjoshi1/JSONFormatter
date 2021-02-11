@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Footer, Header, InputArea, JSONError, OutputArea } from './components';
+import { ArrayView, BooleanView, Footer, Header, InputArea, JSONError, NullView, NumberView, ObjectView, OutputArea, StringView } from './components';
 import { data, data2, data3 } from './constants/dummy-data';
 import './scss/App.scss';
 
@@ -12,7 +12,7 @@ const checkIfJSONString = str => {
 };
 
 const App = () => {
-  const [input, setInput] = useState(JSON.stringify(data2, null, 4))
+  const [input, setInput] = useState(JSON.stringify(data3, null, 4))
   const [output, setOutput] = useState([])
   
   const handleChange = (event) => {
@@ -20,23 +20,50 @@ const App = () => {
     setInput(value)
   }
 
-  const generateOutput = (input, level) => {
-    const toReturn = []
+  // const generateOutput = (input, level) => {
+  //   const toReturn = []
+  //   if (Array.isArray(input)) {
+  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>[</div>)
+  //     toReturn.push(input.map(ele => generateOutput(ele, level+1)))
+  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>]</div>)
+  //   }
+  //   else if (typeof input === 'object') {
+  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>{'{'}</div>)
+  //     for (const key in input) {
+  //       toReturn.push(
+  //         <div key={`${input}-${key}`} style={{marginLeft: `${10*(level+1)}px`}}>
+  //           {key}: {input[key]}
+  //         </div>
+  //       )
+  //     }
+  //     toReturn.push(<div style={{marginLeft: `${10*level}px`}}>{'}'}</div>)
+  //   }
+  //   return toReturn
+  // }
+
+  const generateOutput = (input, level, property) => {
+    let toReturn = 'No Data';
     if (Array.isArray(input)) {
-      toReturn.push(<div style={{marginLeft: `${10*level}px`}}>[</div>)
-      toReturn.push(input.map(ele => generateOutput(ele, level+1)))
-      toReturn.push(<div style={{marginLeft: `${10*level}px`}}>]</div>)
-    }
-    else if (typeof input === 'object') {
-      toReturn.push(<div style={{marginLeft: `${10*level}px`}}>{'{'}</div>)
-      for (const key in input) {
-        toReturn.push(
-          <div key={`${input}-${key}`} style={{marginLeft: `${10*(level+1)}px`}}>
-            {key}: {input[key]}
-          </div>
-        )
+      toReturn = <ArrayView data={input} generateOutput={generateOutput} level={level}/>
+    } else if (typeof input === 'object' && input === null) {
+      toReturn = <NullView level={level} input={input} property={property} />
+    } else if (typeof input === 'object') {
+      toReturn = <ObjectView data={input} generateOutput={generateOutput} level={level}/>
+    } 
+    else {
+      switch (typeof input) {
+        case 'boolean':
+          toReturn = <BooleanView level={level} input={input} property={property} />
+          break;
+        case 'number':
+          toReturn = <NumberView level={level} input={input} property={property} />
+          break;
+        case 'string':
+          toReturn = <StringView level={level} input={input} property={property} />
+          break;
+        default: 
+          break;
       }
-      toReturn.push(<div style={{marginLeft: `${10*level}px`}}>{'}'}</div>)
     }
     return toReturn
   }

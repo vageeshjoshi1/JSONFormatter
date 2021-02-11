@@ -1,6 +1,6 @@
 import React from 'react';
 
-const JSONError = ({ empty }) => ( 
+const JSONError = ({ empty = false }) => ( 
   <div className="error">
     {empty ? (
       <div className="empty">
