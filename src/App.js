@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrayView, BooleanView, Footer, Header, InputArea, JSONError, NullView, NumberView, ObjectView, OutputArea, StringView } from './components';
 import { data, data2, data3 } from './constants/dummy-data';
 import './scss/App.scss';
@@ -14,6 +14,7 @@ const checkIfJSONString = str => {
 const App = () => {
   const [input, setInput] = useState(JSON.stringify(data3, null, 4))
   const [output, setOutput] = useState([])
+  const snackbar = useRef(null);
   
   const handleChange = (event) => {
     const { value = '' } = event.target
@@ -74,6 +75,22 @@ const App = () => {
     else setOutput(generateOutput(JSON.parse(input), 0))
   }
 
+  const handleSnackbar = (message = 'Copied') => {
+    const { current } = snackbar
+    current.className = "show";
+    current.innerHTML = message
+    setTimeout(() => {
+      current.className = current.className.replace("show", "");
+      current.innerHTML = ''
+    }, 3000);
+  }
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(input).then(() => {
+      handleSnackbar()
+    })
+  }
+
   return (
     <div className="container">
       <Header />
@@ -81,7 +98,9 @@ const App = () => {
         <InputArea onChange={handleChange} defaultValue={input} />
         <div className="btn-stack">
           <button className="btn" onClick={handleFormat}>Format</button>
+          <button className="btn" onClick={handleCopy}>Copy JSON</button>
         </div>
+        <div id="snackbar" ref={snackbar} />
         <OutputArea output={output} />
       </div>
       <Footer />
