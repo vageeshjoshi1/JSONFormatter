@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = ({ theme, onThemeClick }) => ( 
   <header className="header">
-    <span className="w-50">JSON Formatter</span>
+    <span className="w-50">React JSON Formatter</span>
     <div className="theme-toggle">
       Theme Selection &nbsp;
       <button

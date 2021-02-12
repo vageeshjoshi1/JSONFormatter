@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NullView = ({ level, property }) => ( 
-  <div style={{marginLeft: `${10*(level) + 25}px`}}>
+  <div style={{marginLeft: `${5*(level)}px`}}>
     {property ? `${property}:` : ''} <span className="null">null</span>
   </div>
 );

@@ -7,11 +7,11 @@ const ArrayComp = ({ data, generateOutput, level = 0 }) => {
   data.forEach((item) => {
     internal.push(generateOutput(item, level+1))
   })
-  return <div style={{marginLeft: `${10*(level)}px`}}>
+  return <div style={{marginLeft: `${5*(level)}px`}}>
     {view ? (<i className="fas fa-caret-down w-15-px" onClick={() => setView(!view)}></i>)
       : (<i className="fas fa-caret-right w-15-px" onClick={() => setView(!view)}></i>)
     }
-    &nbsp; array {`[ ${length} ]`}
+    <span> array </span> {`[ ${length} ]`}
     {view && internal.map((ele, index) => <Fragment key={`array-${index}-${level}`}> {ele} </Fragment>)}
   </div>
 }

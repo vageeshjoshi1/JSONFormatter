@@ -20,15 +20,17 @@
   }
 
   .main {
-    width: 100%;
+    // width: 100%;
     padding: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #ffd9d9;
-    height: calc(100vh - 170px);
+    height: calc(100vh - 154px);
     i {
       cursor: pointer;
+      margin-left: -15px;
+      width: 10px;
     }
   }
 
@@ -50,7 +52,7 @@
     border-radius: 0.5%;
     text-align: left;
     overflow: auto;
-    padding: 5px;
+    padding: 5px 20px;
     div {
       padding: 5px;
     }
@@ -93,8 +95,8 @@
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
-    background-color: #333;
-    color: #fff;
+    background-color: #18bc9c;
+    color: #000;
     text-align: center;
     border-radius: 2px;
     padding: 16px;

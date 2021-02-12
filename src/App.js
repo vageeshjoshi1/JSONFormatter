@@ -30,7 +30,7 @@ const App = () => {
     } else if (typeof input === 'object' && input === null) {
       toReturn = <NullView level={level} input={input} property={property} />
     } else if (typeof input === 'object') {
-      toReturn = <ObjectView data={input} generateOutput={generateOutput} level={level}/>
+      toReturn = <ObjectView data={input} generateOutput={generateOutput} level={level} property={property}/>
     } 
     else {
       switch (typeof input) {
@@ -67,7 +67,8 @@ const App = () => {
   }
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(input).then(() => {
+    if (!input) handleSnackbar('No data to format')
+    else navigator.clipboard.writeText(input).then(() => {
       handleSnackbar()
     })
   }
@@ -76,7 +77,7 @@ const App = () => {
     <div className={`container ${theme}`}>
       <Header onThemeClick={setTheme} theme={theme} />
       <div className="main">
-        <InputArea onChange={handleChange} defaultValue={JSON.stringify(input, null, 4)} />
+        <InputArea onChange={handleChange} defaultValue={JSON.stringify(input, null, 2)} />
         <div className="btn-stack">
           <button className="btn" onClick={handleFormat}>Format</button>
           <button className="btn" onClick={handleCopy}>Copy JSON</button>
